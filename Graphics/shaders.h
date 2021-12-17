@@ -30,13 +30,24 @@ public:
 struct AttributePointer {
 public:
     std::string attribute_name;
+    int size;
+    GLenum type;
     void* offset;
 };
 
-struct ArrayBufferVertexAttributes {
+class VertexAttributes {
 public:
     size_t stride;
     std::vector<AttributePointer> pointers;
+    std::vector<unsigned int> indexes;
+
+	VertexAttributes() { }
+    VertexAttributes(size_t stri, std::vector<AttributePointer> ptrs);
+    ~VertexAttributes();
+
+    void enable();
+    void disable();
+    void init(ShaderProgram* program);
 };
 
 #endif //IGETIT_SHADERS_H

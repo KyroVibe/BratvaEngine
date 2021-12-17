@@ -49,10 +49,10 @@ Mat4 Mat4::make_transform(Vec4 position, Vec4 scale, float rotation) {
 
     Mat4 mat;
     // Rotation
-    mat.set(0, 0, scale.y * cos(rotation));
-    mat.set(0, 1, scale.x * sin(rotation));
-    mat.set(1, 0, scale.y * -sin(rotation));
-    mat.set(1, 1, scale.x * cos(rotation));
+    mat.set(0, 0, scale.x * cos(rotation));
+    mat.set(0, 1, scale.y * sin(rotation));
+    mat.set(1, 0, scale.x * -sin(rotation));
+    mat.set(1, 1, scale.y * cos(rotation));
     // Offset
     mat.set(3, 0, position.x);
     mat.set(3, 1, position.y);

@@ -82,3 +82,33 @@ ShaderProgram::ShaderProgram(int num_shaders, Shader* shaders) {
 ShaderProgram::~ShaderProgram() {
     glDeleteProgram(program);
 }
+
+VertexAttributes::VertexAttributes(size_t stri, std::vector<AttributePointer> ptrs) {
+    pointers = ptrs;
+    stride = stri;
+}
+
+VertexAttributes::~VertexAttributes() { }
+
+void VertexAttributes::enable() {
+    for (auto iter = indexes.begin(); iter != indexes.end(); iter++) {
+        glEnableVertexAttribArray(*iter);
+    }
+}
+
+void VertexAttributes::disable() {
+    for (auto iter = indexes.begin(); iter != indexes.end(); iter++) {
+        glDisableVertexAttribArray(*iter);
+    }
+}
+
+void VertexAttributes::init(ShaderProgram* program) {
+    indexes.clear();
+    for (int i = 0; i < pointers.size(); ++i) {
+        auto attrib = glGetAttribLocation(program->get_program(), pointers.at(i).attribute_name.c_str());
+        indexes.push_back(attrib);
+        glEnableVertexAttribArray(attrib);
+        glVertexAttribPointer(attrib, pointers.at(i).size, pointers.at(i).type, GL_FALSE, stride, pointers.at(i).offset);
+        glDisableVertexAttribArray(attrib);
+    }
+}
