@@ -29,8 +29,8 @@ int GameLoop::Run() {
 
     GLFWwindow* glfwWindow = _window->get_window();
 
-	// WireframeRenderer* r = new WireframeRenderer();
-	ComputeShaderTest* test = new ComputeShaderTest();
+	WireframeRenderer* r = new WireframeRenderer();
+	// ComputeShaderTest* test = new ComputeShaderTest();
 	// delete test;
 
 //    Vec4 scale = Vec4(5, 1, 1, 1);
@@ -47,9 +47,9 @@ int GameLoop::Run() {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-		test->test();
+		// test->test();
 
-		// r->render();
+		r->render();
 
 //		if (scale_factor + modifier > 5.0f || scale_factor + modifier < 1.0f)
 //			modifier *= -1;
@@ -65,7 +65,7 @@ int GameLoop::Run() {
         glfwPollEvents();
     }
 
-	// delete r;
+	delete r;
 
     return 0;
 }

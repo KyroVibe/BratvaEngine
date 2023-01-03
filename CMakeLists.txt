@@ -10,5 +10,14 @@ target_compile_definitions(IGetIt PUBLIC GLEW_STATIC)
 target_include_directories(IGetIt PUBLIC deps/glfw/include)
 target_include_directories(IGetIt PUBLIC deps/glew-2.2.0/include)
 target_link_libraries(IGetIt glfw)
-target_link_libraries(IGetIt ${CMAKE_SOURCE_DIR}/deps/glew-2.2.0/build/lib/Release/libglew32.lib)
+target_link_libraries(IGetIt ${CMAKE_SOURCE_DIR}/deps/glew-2.2.0/build/lib/libglew32.a)
 target_link_libraries(IGetIt opengl32)
+
+add_custom_target(Resources
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Resources/
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/Resources ${CMAKE_BINARY_DIR}/Resources
+        COMMENT "copying ${CMAKE_SOURCE_DIR}/Resources to ${CMAKE_BINARY_DIR}/Resources"
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        )
+
+add_dependencies(IGetIt Resources)

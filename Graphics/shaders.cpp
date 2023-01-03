@@ -9,6 +9,8 @@
 #include <string>
 #include <vector>
 
+#include "../debug_macros.h"
+
 void ShaderErrorCheck(GLuint shader) {
     GLint vertex_compiled;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &vertex_compiled);
@@ -60,7 +62,9 @@ ShaderProgram::ShaderProgram(int num_shaders, Shader* shaders) {
     for (int i = 0; i < num_shaders; ++i) {
         GLuint shaderId = glCreateShader(shaders[i].shader_type);
         const char* source = ReadFile(shaders[i].file.c_str());
-        // std::cout << "Source: \n" << source << std::endl;
+#ifdef BRATVA_SHADERS_DEBUG
+        printf("\n\nSource:\n=====START=====\n%s\n=====END=====\n\n", source);
+#endif
         glShaderSource(shaderId, 1, &source, NULL);
         glCompileShader(shaderId);
         ShaderErrorCheck(shaderId);

@@ -1,0 +1,6 @@
+#ifndef BRATVA_DEBUG_MACROS
+#define BRATVA_DEBUG_MACROS
+
+// #define BRATVA_SHADERS_DEBUG
+
+#endif

@@ -1,6 +1,10 @@
 #include <iostream>
 #include <array>
 
+// Debug Macros
+
+#define BRATVA_SHADERS_DEBUG
+
 #include "game_loop.h"
 #include "Graphics/sprite.h"
 
