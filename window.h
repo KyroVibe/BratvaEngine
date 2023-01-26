@@ -5,7 +5,7 @@
 #ifndef IGETIT_WINDOW_H
 #define IGETIT_WINDOW_H
 
-#include <GL/glew.h>
+#include "GL/glew.h"
 #include <GLFW/glfw3.h>
 
 class Window {

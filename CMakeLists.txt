@@ -9,6 +9,8 @@ add_executable(IGetIt main.cpp window.h window.cpp game_loop.cpp game_loop.h Gra
 target_compile_definitions(IGetIt PUBLIC GLEW_STATIC)
 target_include_directories(IGetIt PUBLIC deps/glfw/include)
 target_include_directories(IGetIt PUBLIC deps/glew-2.2.0/include)
+include_directories(deps/glfw/include)
+include_directories(deps/glew-2.2.0/include)
 target_link_libraries(IGetIt glfw)
 target_link_libraries(IGetIt ${CMAKE_SOURCE_DIR}/deps/glew-2.2.0/build/lib/libglew32.a)
 target_link_libraries(IGetIt opengl32)
